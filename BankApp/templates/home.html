@@ -46,4 +46,42 @@
     <h5>Amsal Bank Toll-free No:08652 19265</h5>
     <h5>Balance check No:08652 19264</h5>
 </div>
+<!-- card section -->
+<div class="row">
+  <div class="col"></div>
+    <div class="card" style="width: 18rem;">
+    <img src="{% static 'homepage/images/save.jpg' %}" class="card-img-top" alt="card1">
+    <div class="card-body">
+    <h5 class="card-title">Saving Account</h5>
+    <p class="card-text">Save your money for your and family's better future, Think positive.</p>
+    <a href="{% url 'account' %}" class="btn btn-primary">Open Saving Account</a>
+  </div>
+</div>
+<div class="col"></div> 
+<div class="card" style="width: 18rem;">
+  <img src="{% static 'homepage/images/loan.jpg' %}" class="card-img-top" alt="card2">
+  <div class="card-body">
+    <h5 class="card-title">Loan</h5>
+    <p class="card-text">We provide home loan, car loan to fulfill your dreams.</p>
+    <a href="#" class="btn btn-primary">Get Loan</a>
+  </div>
+</div> 
+<div class="col"></div>
+<div class="card" style="width: 18rem;">
+  <img src="{% static 'homepage/images/atm.jpg' %}" class="card-img-top" alt="card3">
+  <div class="card-body">
+    <h5 class="card-title">ATM cards</h5>
+    <p class="card-text">We provide ATM card facility to our customer make Withdrawal esay throught ATM.</p>
+    <a href="#" class="btn btn-primary">Get Card</a>
+  </div>
+</div> 
+</div>
+<!-- footer section -->
+<div style="background-color:rgb(248, 214, 18);
+width: 100%;
+text-align: center;
+height: 50px;
+margin: 10px;">
+ <a href="{% url 'about' %}"><h4>@amsalbank.com</h4></a>
+</div>
 {% endblock %}

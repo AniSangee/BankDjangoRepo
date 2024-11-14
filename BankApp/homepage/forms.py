@@ -57,13 +57,7 @@ class UserRegistrationForm(UserCreationForm):
             user.save()
         return user
 
-class DepositForm(forms.Form):
-    amount = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0.01)
-
-class WithdrawForm(forms.Form):
-    amount = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0.01)
-
-
+# account
 from django import forms
 from .models import Account
 
@@ -79,3 +73,16 @@ class AccountCreationForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter email'}),
             'initial_deposit':forms.NumberInput(attrs={'class': 'form-control'})
         }
+
+# Deposit
+class DepositForm(forms.Form):
+    amount = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0.01)
+
+
+# Withdraw
+class WithdrawForm(forms.Form):
+    amount = forms.DecimalField(max_digits=10, decimal_places=2, min_value=0.01)
+
+
+
+

@@ -75,7 +75,7 @@ def create_account(request):
         form = AccountCreationForm()
     return render(request, "create_account.html", {"form": form})
 
-from django.shortcuts import render
+# account list
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -85,7 +85,7 @@ def account_list(request):
     return render(request, "account_list.html", {"accounts": accounts})
 
 
-
+# balance
 from .models import Account, Transaction
 from .forms import DepositForm, WithdrawForm
 
@@ -96,9 +96,10 @@ def balance(request,account_number):
         account = Account.objects.get(account_number=account_number, user=request.user)
     except Account.DoesNotExist:
         messages.error(request, "Account not found.")
-        return redirect('account_list')
+        return redirect('deposit')
     return render(request, "balance.html", {'account': account})
 
+# Deposit
 @login_required
 def deposit(request, account_number):
     
@@ -116,12 +117,13 @@ def deposit(request, account_number):
             account.balance += amount
             account.save()
             Transaction.objects.create(account=account, transaction_type="deposit", amount=amount)
-            messages.success(request, f"${amount} deposited successfully!")
+            messages.success(request, f"Rs {amount} deposited successfully!")
             return redirect('balance',account_number=account.account_number)
     else:
         form = DepositForm()
-    return render(request, "deposit.html", {"form": form})
+    return render(request, "deposit.html", {'account': account})
 
+# Withdrawal
 @login_required
 def withdraw(request, account_number):
     try:
@@ -139,12 +141,10 @@ def withdraw(request, account_number):
                 account.balance -= amount
                 account.save()
                 Transaction.objects.create(account=account, transaction_type="withdraw", amount=amount)
-                messages.success(request, f"${amount} withdrawn successfully!")
+                messages.success(request, f"Rs {amount} withdrawn successfully!")
                 return redirect('balance',account_number=account.account_number)
             else:
                 messages.error(request, "Insufficient funds!")
     else:
         form = WithdrawForm()
-    return render(request, "withdraw.html", {"form": form})
-
-
+    return render(request, "withdraw.html", {'account': account})

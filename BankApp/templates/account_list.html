@@ -18,7 +18,7 @@
                     <tr>
                         <td>{{ account.get_account_type_display }}</td>
                         <td>{{ account.account_number }}</td>
-                        <td>${{ account.balance }}</td>
+                        <td>Rs {{ account.balance }}</td>
                         <td>
                             <!-- Correctly pass account_number as an argument -->
                             <a href="{% url 'balance' account_number=account.account_number %}" class="btn btn-info">View Balance</a>
@@ -30,7 +30,7 @@
             </tbody>
         </table>
     {% else %}
-        <p>You have no accounts yet. <a href="{% url 'create_account' %}">Create a new account</a></p>
+        <p>You have no accounts yet. <a href="{% url 'account' %}">Create a new account</a></p>
     {% endif %}
 </div>
 {% endblock %}
