@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% block body_block %}
+<div class="container mt-5">
+    <h2>Deposit to Account: {{user.account.account_number}}</h2>
+    
+    <!-- Form for deposit -->
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="amount">Deposit Amount (Rs)</label>
+            <input type="number" step="0.01" class="form-control" id="amount" name="amount" required min="0">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Deposit</button>
+    </form>
+    
+    <a href="{% url 'account_list' %}" class="btn btn-secondary mt-3">Back to Accounts</a>
+</div>
+{% endblock %}

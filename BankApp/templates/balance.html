@@ -1,0 +1,7 @@
+{% extends 'main.html' %}
+{% block body_block %}
+  <h2>Balance</h2>
+  <p>Your current balance is: Rs {{ account.balance }}</p>
+  <a href="{% url 'deposit' account_number=account.account_number %}">Deposit</a> |
+  <a href="{% url 'withdraw' account_number=account.account_number %}">Withdraw</a>
+{% endblock %}

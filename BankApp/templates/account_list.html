@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% block body_block %}
+<div class="container mt-5">
+    <h2>Your Bank Accounts</h2>
+    
+    {% if accounts %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Account Type</th>
+                    <th>Account Number</th>
+                    <th>Balance</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for account in accounts %}
+                    <tr>
+                        <td>{{ account.get_account_type_display }}</td>
+                        <td>{{ account.account_number }}</td>
+                        <td>${{ account.balance }}</td>
+                        <td>
+                            <!-- Correctly pass account_number as an argument -->
+                            <a href="{% url 'balance' account_number=account.account_number %}" class="btn btn-info">View Balance</a>
+                            <a href="{% url 'deposit' account_number=account.account_number %}" class="btn btn-primary">Deposit</a>
+                            <a href="{% url 'withdraw' account_number=account.account_number %}" class="btn btn-danger">Withdraw</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You have no accounts yet. <a href="{% url 'create_account' %}">Create a new account</a></p>
+    {% endif %}
+</div>
+{% endblock %}
